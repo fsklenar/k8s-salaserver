@@ -16,7 +16,7 @@ kubectl apply -f monitoring/values.yaml
 
 # 2. Ingress installation INGRESS-NGINX
 
-https://kubernetes.github.io/ingress-nginx/deploy/
+https://github.com/kubernetes/ingress-nginx
 
 ###  Static LAN IP
 By default ingress is not visible in your LAN, only internally from master/worker nodes.
