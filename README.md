@@ -1,4 +1,4 @@
-# K8S metrics server
+# 1. K8S metrics server
 
 ### Repository
 
@@ -8,13 +8,13 @@ https://github.com/kubernetes-sigs/metrics-server/
 
 ### Installation
 
-add **--kubelet-insecure-tls** into [monitoring/values.yaml](monitoring/values.yaml) - disabling certificate validation for local server
+add ```--kubelet-insecure-tls``` into [monitoring/values.yaml](monitoring/values.yaml) - disabling certificate validation for local server
 
 ```
 kubectl apply -f monitoring/values.yaml
 ```
 
-# Ingress installation INGRESS-NGINX
+# 2. Ingress installation INGRESS-NGINX
 
 https://kubernetes.github.io/ingress-nginx/deploy/
 
