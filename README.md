@@ -8,7 +8,7 @@ https://github.com/kubernetes-sigs/metrics-server/
 
 ### Installation
 
-add ```--kubelet-insecure-tls``` into [monitoring/values.yaml](monitoring/values.yaml) - disabling certificate validation for local server
+add ```--kubelet-insecure-tls``` into [monitoring/metrics-server.yaml](monitoring/metrics-server.yaml) - disabling certificate validation for local server
 
 ```
 kubectl apply -f monitoring/values.yaml
