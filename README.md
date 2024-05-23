@@ -111,3 +111,9 @@ cd /etc/kubernets/manifest
 - change ``` - --bind-address=127.0.0.1``` in `kube-scheduler.yaml` file to ``` - --bind-address=0.0.0.0```
 - change ``` - --bind-address=127.0.0.1``` in `kube-controller-manager.yaml` file to ``` - --bind-address=0.0.0.0```
 - change ``` - --bind-address=127.0.0.1``` in `etcd.yaml` file to ``` - --listen-metrics-urls=http://0.0.0.0:2381```
+
+[comment]: //todo
+[comment]: Salaserver:
+[comment]:  - automatic import of kube config into <root> user
+[comment]:  - automatic port-forwarding of prometheus/grafana - kubectl port-forward ...
+[comment]:  - port-forward to external server - SSH
