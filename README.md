@@ -48,7 +48,7 @@ https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-promet
 Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
 
 ### Installation
-- Note: create and install new prometheus-kps into new namespace (otherwise --default-- namespace will be used)
+- Note: create and install new prometheus-kps into new namespace (otherwise `default` namespace will be used)
 
 ```
 kubectl create namespace prometheus-kps
@@ -59,7 +59,8 @@ helm install prometheus-kps prometheus-community/kube-prometheus-stack --namespa
 
 port forward:
 ```
- kubectl port-forward -n prometheus-kps <grafana-pod>  3000:3000
+ export GRAFANA_POD="$(kubectl get pods --namespace prometheus-kps -l "app.kubernetes.io/name=grafana" --output jsonpath="{.items[0].metadata.name}")"
+ kubectl port-forward -n prometheus-kps ${GRAFANA_POD} 3000:3000
 ```
 default username: **admin**
 default password: **prom-operator**
@@ -68,7 +69,8 @@ default password: **prom-operator**
 
 port forward:
 ```
- kubectl port-forward -n prometheus-kps prometheus-prometheus-kps-kube-promet-prometheus-0  9090:9090
+ export PROM_POD="$(kubectl get pods --namespace prometheus-kps -l "app.kubernetes.io/name=prometheus" --output jsonpath="{.items[0].metadata.name}")"
+ kubectl port-forward -n prometheus-kps ${PROM_POD}  9090:9090
 ```
 
 ### Fix Kubeproxy alert
@@ -101,9 +103,11 @@ metadata:
   namespace: kube-system
 ```
 
-### Fix Kube scheduler alert
-- log in into control-plane node
+### Similarly fix **Kube scheduler**, **Kube controller** and **etcd** alerts
+- SSH login into control-plane node
 ```
 cd /etc/kubernets/manifest
 ```
 Change ``` - --bind-address=127.0.0.1``` in kube-scheduler.yaml file to ``` - --bind-address=0.0.0.0```
+Change ``` - --bind-address=127.0.0.1``` in kube-controller-manager.yaml file to ``` - --bind-address=0.0.0.0```
+Change ``` - --bind-address=127.0.0.1``` in etcd.yaml file to ``` - --listen-metrics-urls=http://0.0.0.0:2381```
