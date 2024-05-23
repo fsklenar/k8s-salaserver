@@ -109,5 +109,7 @@ metadata:
 cd /etc/kubernets/manifest
 ```
 Change ``` - --bind-address=127.0.0.1``` in kube-scheduler.yaml file to ``` - --bind-address=0.0.0.0```
+
 Change ``` - --bind-address=127.0.0.1``` in kube-controller-manager.yaml file to ``` - --bind-address=0.0.0.0```
+
 Change ``` - --bind-address=127.0.0.1``` in etcd.yaml file to ``` - --listen-metrics-urls=http://0.0.0.0:2381```
