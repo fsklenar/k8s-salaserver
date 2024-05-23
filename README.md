@@ -112,6 +112,7 @@ cd /etc/kubernets/manifest
 - change ``` - --bind-address=127.0.0.1``` in `kube-controller-manager.yaml` file to ``` - --bind-address=0.0.0.0```
 - change ``` - --bind-address=127.0.0.1``` in `etcd.yaml` file to ``` - --listen-metrics-urls=http://0.0.0.0:2381```
 
+<!---
 [//]: # //todo
 
 [//]: # Salaserver:
@@ -121,4 +122,4 @@ cd /etc/kubernets/manifest
 [//]: #  - automatic port-forwarding of prometheus/grafana - kubectl port-forward ...
 
 [//]: #  - port-forward to external server - SSH
-
+-->
