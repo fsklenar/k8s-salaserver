@@ -44,15 +44,15 @@ For NGINX:
 
 https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 
-### Documentation
+## Documentation
 Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
 
-### Installation
+## Installation
 - Note: create and install new prometheus-kps into new namespace (otherwise `default` namespace will be used)
 
 ```
 kubectl create namespace prometheus-kps
-helm install prometheus-kps prometheus-community/kube-prometheus-stack --namespace prometheus-kps
+helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace prometheus-kps -f prometheus/values.yaml
 ```
 
 ### Grafana
@@ -112,10 +112,3 @@ cd /etc/kubernets/manifest
 - change ``` - --bind-address=127.0.0.1``` in `kube-controller-manager.yaml` file to ``` - --bind-address=0.0.0.0```
 - change ``` - --bind-address=127.0.0.1``` in `etcd.yaml` file to ``` - --listen-metrics-urls=http://0.0.0.0:2381```
 
-<!---
-//todo
-Salaserver:
- - automatic import of kube config into <root> user
- - automatic port-forwarding of prometheus/grafana - kubectl port-forward ...
- - port-forward to external server - SSH
--->
