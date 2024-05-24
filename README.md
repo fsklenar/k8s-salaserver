@@ -55,7 +55,7 @@ kubectl create namespace prometheus-kps
 helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace prometheus-kps -f prometheus/values.yaml
 ```
 
-### Grafana
+### - Grafana
 
 port forward:
 ```
@@ -65,7 +65,7 @@ port forward:
 default username: **admin**
 default password: **prom-operator**
 
-### Prometheus
+### - Prometheus
 
 port forward:
 ```
@@ -73,7 +73,7 @@ port forward:
  kubectl port-forward -n prometheus-kps ${PROM_POD}  9090:9090
 ```
 
-### Fix Kubeproxy alert
+### - Fix Kubeproxy alert
 
 
 The metrics bind address of kube-proxy is default to 127.0.0.1:10249 that prometheus instances cannot access to. You should expose metrics by changing metricsBindAddress field value to 0.0.0.0:10249 if you want to collect them.
@@ -103,7 +103,7 @@ metadata:
   namespace: kube-system
 ```
 
-### Similarly fix **Kube scheduler**, **Kube controller** and **etcd** alerts
+### - Similarly fix **Kube scheduler**, **Kube controller** and **etcd** alerts
 - SSH login into control-plane node
 ```
 cd /etc/kubernets/manifest
