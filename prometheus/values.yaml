@@ -2,3 +2,14 @@ defaultRules:
   create: true
   rules:
     etcd: false
+  storage:
+    ## Using PersistentVolumeClaim
+    ##
+    volumeClaimTemplate:
+      spec:
+        storageClassName: gluster
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+      selector: {}
