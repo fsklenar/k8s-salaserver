@@ -48,10 +48,11 @@ https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-promet
 Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
 
 ## Installation
-- Note: create and install new prometheus-kps into new namespace (otherwise `default` namespace will be used)
+- Note: create and install new prometheus-kps into new namespace (otherwise `default` namespace will be used) with persistent storage
 
 ```
 kubectl create namespace prometheus-kps
+kubectl apply -f --namespace prometheus-kps -f prometheus/prom-pv.yaml
 helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace prometheus-kps -f prometheus/values.yaml
 ```
 

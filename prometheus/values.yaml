@@ -1,15 +1,10 @@
-defaultRules:
-  create: true
-  rules:
-    etcd: false
-  storage:
-    ## Using PersistentVolumeClaim
-    ##
-    volumeClaimTemplate:
-      spec:
-        storageClassName: gluster
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 10Gi
-      selector: {}
+prometheus:
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-storage
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
