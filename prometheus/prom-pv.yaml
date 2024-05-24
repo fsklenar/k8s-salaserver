@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-prometheus-migration-prometheus-0
+  namespace: prometheus-kps
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: local-storage
+  local:
+    path: /srv/virtiofs
+  capacity:
+    storage: 10Gi
+  persistentVolumeReclaimPolicy: Delete
+  volumeMode: Filesystem
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - k8sworker01
+          - k8sworker02
+
