@@ -1,0 +1,4 @@
+defaultRules:
+  create: true
+  rules:
+    etcd: false
