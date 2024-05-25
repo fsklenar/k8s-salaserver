@@ -51,17 +51,16 @@ Visit https://github.com/prometheus-operator/kube-prometheus for instructions on
 - Note: create and install new prometheus-kps into new namespace (otherwise `default` namespace will be used) with persistent storage
 
 ```
-kubectl create namespace prometheus-kps
-kubectl apply -f --namespace prometheus-kps -f prometheus/prom-pv.yaml
-helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace prometheus-kps -f prometheus/values.yaml
+kubectl apply -f --namespace monitoring -f prometheus/prom-pv.yaml
+helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace monitoring -f prometheus/values.yaml
 ```
 
 ### - Grafana
 
 port forward:
 ```
- export GRAFANA_POD="$(kubectl get pods --namespace prometheus-kps -l "app.kubernetes.io/name=grafana" --output jsonpath="{.items[0].metadata.name}")"
- kubectl port-forward -n prometheus-kps ${GRAFANA_POD} 3000:3000
+ export GRAFANA_POD="$(kubectl get pods --namespace monitoring-l "app.kubernetes.io/name=grafana" --output jsonpath="{.items[0].metadata.name}")"
+ kubectl port-forward -n monitoring ${GRAFANA_POD} 3000:3000
 ```
 default username: **admin**
 default password: **prom-operator**
@@ -70,8 +69,8 @@ default password: **prom-operator**
 
 port forward:
 ```
- export PROM_POD="$(kubectl get pods --namespace prometheus-kps -l "app.kubernetes.io/name=prometheus" --output jsonpath="{.items[0].metadata.name}")"
- kubectl port-forward -n prometheus-kps ${PROM_POD}  9090:9090
+ export PROM_POD="$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=prometheus" --output jsonpath="{.items[0].metadata.name}")"
+ kubectl port-forward -n monitoring ${PROM_POD}  9090:9090
 ```
 
 ### - Fix Kubeproxy alert
