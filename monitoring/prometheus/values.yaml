@@ -9,6 +9,7 @@ prometheus:
             requests:
               storage: 10Gi
 grafana:
+  defaultDashboardsTimezone: Europe/Bratislava
   persistence:
     enabled: true
     #type: sts
@@ -18,3 +19,16 @@ grafana:
     size: 10Gi
     finalizers:
       - kubernetes.io/pvc-protection
+config:
+  route:
+    receiver: smtp
+  receivers:
+    - name: smtp
+      email_configs:
+          - smarthost: smtp.gmail.com:587
+            to: 'xxx'
+            from: 'xxx'
+            auth_username: 'xxx'
+            auth_password: 'xxx'
+            send_resolved: true
+            require_tls: false
