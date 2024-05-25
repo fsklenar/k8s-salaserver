@@ -48,11 +48,13 @@ https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-promet
 Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
 
 ## Installation
-- Note: create and install new prometheus-kps into new namespace (otherwise `default` namespace will be used) with persistent storage
-
+- Note:
+  - Install prometheus-kps into new namespace (otherwise `default` namespace will be used)
+  - Persistent Volumes are created for persisting data of Prometheus and Grafana
 ```
 kubectl create namespace monitoring
 kubectl apply --namespace monitoring -f monitoring/prometheus/prom-pv.yaml
+kubectl apply --namespace monitoring -f monitoring/prometheus/grafana-pv.yaml
 helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace monitoring -f monitoring/prometheus/values.yaml
 ```
 
