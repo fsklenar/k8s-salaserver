@@ -51,8 +51,9 @@ Visit https://github.com/prometheus-operator/kube-prometheus for instructions on
 - Note: create and install new prometheus-kps into new namespace (otherwise `default` namespace will be used) with persistent storage
 
 ```
-kubectl apply -f --namespace monitoring -f prometheus/prom-pv.yaml
-helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace monitoring -f prometheus/values.yaml
+kubectl create namespace monitoring
+kubectl apply --namespace monitoring -f monitoring/prometheus/prom-pv.yaml
+helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace monitoring -f monitoring/prometheus/values.yaml
 ```
 
 ### - Grafana
