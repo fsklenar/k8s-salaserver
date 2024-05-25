@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-virtiofs-grafana-01
+  namespace: monitoring
+  labels:
+    pvc-app: grafana
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: local-storage
+  local:
+    path: /srv/virtiofs/grafana
+  capacity:
+    storage: 10Gi
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+  claimRef:
+    name: prometheus-kps-grafana
+    namespace: monitoring
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - k8sworker01
+          - k8sworker02
+
