@@ -8,3 +8,13 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
+grafana:
+  persistence:
+    enabled: true
+    #type: sts
+    storageClassName: "local-storage"
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
