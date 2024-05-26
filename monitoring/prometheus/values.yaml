@@ -1,4 +1,7 @@
 prometheus:
+  service:
+    externalIPs:
+      - 10.192.168.202
   prometheusSpec:
     storageSpec:
       volumeClaimTemplate:
@@ -10,6 +13,28 @@ prometheus:
               storage: 10Gi
 grafana:
   defaultDashboardsTimezone: Europe/Bratislava
+  service:
+    # ports:
+    #   port: 3000
+    port: 3000
+     # number: 3000
+    externalIPs:
+      - 10.192.168.202
+  # ingress:
+  #   enabled: true
+  #   annotations: {
+  #     kubernetes.io/ingress.class: nginx
+  #   }
+  #   hosts:
+  #     - "k8smaster.local"
+  #   ingressClassName: nginx
+  #   pathType: Prefix
+  #   path: /
+  grafana.ini:
+    server:
+      domain: "k8smaster.local"
+      root_url: "%(protocol)s://%(domain)s/"
+      serve_from_sub_path: true
   persistence:
     enabled: true
     #type: sts
