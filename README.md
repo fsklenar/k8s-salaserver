@@ -117,6 +117,13 @@ cd /etc/kubernets/manifest
 
 # 4. Wordpress DEV
 Wordpress application with MySQL
+
+### - Generate MySQL password
+```
+kubectl create secret generic mysql-pass --from-literal=password=secret_db_pass -n wordpress-dev
+```
+
+### - Create Wordpress + MySQL deployments
 ```
 kubectl apply -f wordpress-dev -n wordpress-dev
 ```
