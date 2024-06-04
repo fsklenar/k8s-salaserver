@@ -171,6 +171,6 @@ helm install kibana elastic/kibana --version 8.5.1 -n monitoring
 ### Install Fluentd
 
 ```
-kubectl apply -f monitoring/fluentd-es/fluentd-config-map.yaml
-kubectl apply -f monitoring/fluentd-es/fluentd-dapr-with-rbac.yaml
+kubectl apply -f monitoring/kibana-es-fluentd/fluentd-config-map.yaml
+kubectl apply -f monitoring/kibana-es-fluentd/fluentd-dapr-with-rbac.yaml
 ```
