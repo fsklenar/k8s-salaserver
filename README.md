@@ -144,7 +144,7 @@ helm repo update
 kubectl apply -f monitoring/kibana-es-fluentd/elastic-pv.yaml
 ```
 
-### Install Elastic Search using Helm
+### Install Elasticsearch using Helm
 ```
 helm install elasticsearch elastic/elasticsearch --version 8.5.1 -n monitoring --set replicas=1
 ```
@@ -168,6 +168,11 @@ helm --namespace=monitoring test elasticsearch
 helm install kibana elastic/kibana --version 8.5.1 -n monitoring
 ```
 
+** Port forward: **
+```
+kubectl port-forward svc/kibana-kibana 5601 -n monitoring
+```
+Browse to http://localhost:5601
 ### Install Fluentd
 
 ```
@@ -175,9 +180,3 @@ kubectl apply -f monitoring/kibana-es-fluentd/fluentd-config-map.yaml
 kubectl apply -f monitoring/kibana-es-fluentd/fluentd-dapr-with-rbac.yaml
 ```
 
-### Install dapr
-```
-helm repo add dapr https://dapr.github.io/helm-charts/
-helm repo update
-helm install dapr dapr/dapr --namespace monitoring --set global.logAsJson=true
-```
