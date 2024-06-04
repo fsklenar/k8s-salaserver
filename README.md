@@ -168,7 +168,7 @@ helm --namespace=monitoring test elasticsearch
 helm install kibana elastic/kibana --version 8.5.1 -n monitoring
 ```
 
-**Port forward:**
+- **Port forward:**
 ```
 kubectl port-forward svc/kibana-kibana 5601 -n monitoring
 ```
