@@ -154,7 +154,7 @@ NOTES:
 ```
 kubectl get pods --namespace=monitoring -l app=elasticsearch-master -w
 ```
-2. Retrieve elastic user's password.
+2. Retrieve `elastic` user's password.
 ```
 kubectl get secrets --namespace=monitoring elasticsearch-master-credentials -ojsonpath='{.data.password}' | base64 -d
 ```
@@ -173,4 +173,11 @@ helm install kibana elastic/kibana --version 8.5.1 -n monitoring
 ```
 kubectl apply -f monitoring/kibana-es-fluentd/fluentd-config-map.yaml
 kubectl apply -f monitoring/kibana-es-fluentd/fluentd-dapr-with-rbac.yaml
+```
+
+### Install dapr
+```
+helm repo add dapr https://dapr.github.io/helm-charts/
+helm repo update
+helm install dapr dapr/dapr --namespace monitoring --set global.logAsJson=true
 ```
