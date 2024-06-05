@@ -177,6 +177,6 @@ Browse to http://localhost:5601
 
 ```
 kubectl apply -f monitoring/kibana-es-fluentd/fluentd-config-map.yaml
-kubectl apply -f monitoring/kibana-es-fluentd/fluentd-dapr-with-rbac.yaml
+kubectl apply -f monitoring/kibana-es-fluentd/fluentd-with-rbac.yaml
 ```
 

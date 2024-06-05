@@ -76,7 +76,12 @@ spec:
           - name: FLUENT_ELASTICSEARCH_USER
             value: "elastic"
           - name: FLUENT_ELASTICSEARCH_PASSWORD
-            value: "<secret_pass>" #change to read from secret
+            value: "<secret>" #change to read from secret
+            # valueFrom:
+            #   secretKeyRef:
+            #     key: password
+            #     name: elasticsearch-master-credentials
+            #     namespace: monitoring
         resources:
           limits:
             memory: 300Mi
