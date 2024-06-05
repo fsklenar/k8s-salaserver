@@ -25,54 +25,14 @@ data:
       @type tail
       path /var/log/containers/*.log
       pos_file fluentd-docker.pos
-      time_format %Y-%m-%dT%H:%M:%S
       tag kubernetes.*
       <parse>
-        @type multi_format
-        <pattern>
-          format json
-          time_key time
-          time_type string
-          time_format "%Y-%m-%dT%H:%M:%S.%NZ"
-          keep_time_key false
-        </pattern>
-        <pattern>
-          format regexp
-          expression /^(?<time>.+) (?<stream>stdout|stderr)( (?<logtag>.))? (?<log>.*)$/
-          time_format '%Y-%m-%dT%H:%M:%S.%N%:z'
-          keep_time_key false
-        </pattern>
+        @type regexp
+        time_key time
+        expression /\[(?<time>[^\]]*)\](?<content>.*)$/
+        time_format %Y-%m-%dT%H:%M:%S
       </parse>
     </source>
-
-    # <filter kubernetes.var.log.containers.webapp**.log>
-    #   @type parser
-    #   <parse>
-    #     @type nginx
-    #   </parse>
-    #   key_name log
-    # </filter>
-
-    <filter kubernetes.**>
-      @type kubernetes_metadata
-      @id filter_kube_metadata
-    </filter>
-
-    <filter kubernetes.var.log.containers.**>
-      @type parser
-      <parse>
-        @type json
-        format json
-        time_key time
-        time_type string
-        time_format "%Y-%m-%dT%H:%M:%S.%NZ"
-        keep_time_key false
-      </parse>
-      key_name log
-      replace_invalid_sequence true
-      emit_invalid_record_to_error true
-      reserve_data true
-    </filter>
 
     <match **>
       @type elasticsearch
