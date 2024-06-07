@@ -146,7 +146,7 @@ kubectl apply -f monitoring/kibana-es-fluentd/elastic-pv.yaml
 
 ### Install Elasticsearch using Helm
 ```
-helm install elasticsearch elastic/elasticsearch --version 8.5.1 -n monitoring --set replicas=1
+helm install elasticsearch elastic/elasticsearch --version 8.5.1 -n monitoring -f monitoring/kibana-es-fluentd/elastic.yaml
 ```
 
 NOTES:
@@ -165,7 +165,7 @@ helm --namespace=monitoring test elasticsearch
 
 ### Install Kibana
 ```
-helm install kibana elastic/kibana --version 8.5.1 -n monitoring
+helm install kibana elastic/kibana --version 8.5.1 -n monitoring -f monitoring/kibana-es-fluentd/kibana.yaml
 ```
 
 - **Port forward:**
