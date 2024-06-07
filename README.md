@@ -172,12 +172,18 @@ helm --namespace=monitoring test elasticsearch
 ```
 helm install kibana elastic/kibana --version 8.5.1 -n monitoring -f monitoring/kibana-es-fluentd/kibana.yaml
 ```
+Patch Kibana service - add `ExternalIPs` - change IP accordingly to your network
+```
+kubectl patch svc kibana-kibana -p '{"spec":{"externalIPs":["10.192.168.202"]}}' -n monitoring
+```
 
 - **Port forward:**
+Browse Kibana on localhost
 ```
 kubectl port-forward svc/kibana-kibana 5601 -n monitoring
 ```
 Browse to http://localhost:5601
+
 ### Install Fluentd
 
 ```
