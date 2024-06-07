@@ -51,6 +51,7 @@ Visit https://github.com/prometheus-operator/kube-prometheus for instructions on
 - Note:
   - Install prometheus-kps into new namespace (otherwise `default` namespace will be used)
   - Persistent Volumes are created for persisting data of Prometheus and Grafana
+  - change  `externalIPs:` in `monitoring/prometheus/values.yaml` accordingly to your network
 ```
 kubectl create namespace monitoring
 kubectl apply --namespace monitoring -f monitoring/prometheus/prom-pv.yaml
