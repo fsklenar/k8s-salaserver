@@ -158,7 +158,11 @@ kubectl get pods --namespace=monitoring -l app=elasticsearch-master -w
 ```
 kubectl get secrets --namespace=monitoring elasticsearch-master-credentials -ojsonpath='{.data.password}' | base64 -d
 ```
-3. Test cluster health using Helm test.
+3. COPY secret to `kube-system` namespace - `Fluentd` will need it
+```
+kubectl patch secret -n monitoring elasticsearch-master-credentials --type=json -p='[{"op": "replace", "path": "/metadata/namespace", "value": "kube-system"}]' -o yaml --dry-run=client | kubectl apply -f -
+```
+4. Test cluster health using Helm test.
 ```
 helm --namespace=monitoring test elasticsearch
 ```
