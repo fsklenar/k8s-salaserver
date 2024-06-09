@@ -11,7 +11,7 @@ https://github.com/kubernetes-sigs/metrics-server/
 add ```--kubelet-insecure-tls``` into [monitoring/metrics-server.yaml](monitoring/metrics-server.yaml) - disabling certificate validation for local server
 
 ```
-kubectl apply -f monitoring/values.yaml
+kubectl apply -f monitoring/metrics-server.yaml
 ```
 
 # 2. Ingress installation INGRESS-NGINX
@@ -54,8 +54,8 @@ Visit https://github.com/prometheus-operator/kube-prometheus for instructions on
   - change  `externalIPs:` in `monitoring/prometheus/values.yaml` accordingly to your network
 ```
 kubectl create namespace monitoring
-kubectl apply --namespace monitoring -f monitoring/prometheus/prom-pv.yaml
-kubectl apply --namespace monitoring -f monitoring/prometheus/grafana-pv.yaml
+kubectl apply --namespace monitoring -f monitoring/prometheus/pv/prom-pv.yaml
+kubectl apply --namespace monitoring -f monitoring/prometheus/pv/grafana-pv.yaml
 helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace monitoring -f monitoring/prometheus/values.yaml
 ```
 
@@ -142,12 +142,12 @@ helm repo update
 
 ### Create PersistentVolume for ElasticSearch
 ```
-kubectl apply -f monitoring/kibana-es-fluentd/elastic-pv.yaml
+kubectl apply -f monitoring/kibana-es-fluentd/elastic/elastic-pv.yaml
 ```
 
 ### Install Elasticsearch using Helm
 ```
-helm install elasticsearch elastic/elasticsearch --version 8.5.1 -n monitoring -f monitoring/kibana-es-fluentd/elastic.yaml
+helm install elasticsearch elastic/elasticsearch --version 8.5.1 -n monitoring -f monitoring/kibana-es-fluentd/elastic/elastic.yaml
 ```
 
 NOTES:
@@ -170,7 +170,7 @@ helm --namespace=monitoring test elasticsearch
 
 ### Install Kibana
 ```
-helm install kibana elastic/kibana --version 8.5.1 -n monitoring -f monitoring/kibana-es-fluentd/kibana.yaml
+helm install kibana elastic/kibana --version 8.5.1 -n monitoring -f monitoring/kibana-es-fluentd/kibana/kibana.yaml
 ```
 Patch Kibana service - add `ExternalIPs` - change IP accordingly to your network
 ```
@@ -187,7 +187,7 @@ Browse to http://localhost:5601
 ### Install Fluentd
 
 ```
-kubectl apply -f monitoring/kibana-es-fluentd/fluentd-config-map.yaml
-kubectl apply -f monitoring/kibana-es-fluentd/fluentd-with-rbac.yaml
+kubectl apply -f monitoring/kibana-es-fluentd/fluentd/fluentd-config-map.yaml
+kubectl apply -f monitoring/kibana-es-fluentd/fluentd/fluentd-with-rbac.yaml
 ```
 
