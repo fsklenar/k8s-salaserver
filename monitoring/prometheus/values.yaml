@@ -51,7 +51,7 @@ config:
     - name: smtp
       email_configs:
           - smarthost: smtp.gmail.com:587
-            to: 'xxx'
+            to: 'frantisek.sklenar@gmail.com'
             from: 'xxx'
             auth_username: 'xxx'
             auth_password: 'xxx'
