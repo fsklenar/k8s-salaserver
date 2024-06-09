@@ -10,7 +10,7 @@ lifecycle:
         #!/bin/bash
         # Add a template to adjust number of shards/replicas
         TEMPLATE_NAME=my_template
-        INDEX_PATTERN="logstash-*"
+        INDEX_PATTERN="dapr-*"
         SHARD_COUNT=8
         REPLICA_COUNT=0
         ES_URL=http://localhost:9200
