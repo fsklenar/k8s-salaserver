@@ -49,7 +49,7 @@ alertmanager:
     receivers:
     - name: 'smtp'
       email_configs:
-      - to: 'v@gmail.com'
+      - to: '<xxx>@gmail.com'
         auth_username: '<xxx>@gmail.com'
         auth_password: '<xxx>'
         require_tls: true
