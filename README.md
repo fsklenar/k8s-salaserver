@@ -57,8 +57,10 @@ Visit https://github.com/prometheus-operator/kube-prometheus for instructions on
 kubectl create namespace monitoring
 kubectl apply --namespace monitoring -f monitoring/prometheus/pv/prom-pv.yaml
 kubectl apply --namespace monitoring -f monitoring/prometheus/pv/grafana-pv.yaml
-kubectl create secret generic alertmanager-prometheus-kps-kube-promet-alertmanager-generated -n monitoring --from-file=monitoring/prometheus/alertmanager.yaml
-helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace monitoring -f monitoring/prometheus/values.yaml
+kubectl create secret generic alertmanager-prometheus-kps-kube-promet-alertmanager-generated \
+  -n monitoring --from-file=monitoring/prometheus/alertmanager.yaml
+helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack \
+  --namespace monitoring -f monitoring/prometheus/values.yaml
 ```
 
 ### - Grafana
