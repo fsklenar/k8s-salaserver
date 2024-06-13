@@ -37,15 +37,12 @@ alertmanager:
       smtp_from: '<xxx>@gmail.com'
       resolve_timeout: 5m
     route:
-      group_by: ['job']
+      group_by: ['alertname','job']
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
       receiver: 'smtp'
       routes:
-      - match:
-          alertname: Watchdog
-        receiver: 'smtp'
     receivers:
     - name: 'smtp'
       email_configs:
