@@ -49,13 +49,15 @@ Visit https://github.com/prometheus-operator/kube-prometheus for instructions on
 
 ## Installation
 - Note:
-  - Install prometheus-kps into new namespace (otherwise `default` namespace will be used)
+  - Install prometheus-kps into the new namespace (otherwise `default` namespace will be used)
   - Persistent Volumes are created for persisting data of Prometheus and Grafana
   - change  `externalIPs:` in `monitoring/prometheus/values.yaml` accordingly to your network
+  - *EDIT* file `monitoring/prometheus/alertmanager.yaml` - replace `<xxx>` with proper values
 ```
 kubectl create namespace monitoring
 kubectl apply --namespace monitoring -f monitoring/prometheus/pv/prom-pv.yaml
 kubectl apply --namespace monitoring -f monitoring/prometheus/pv/grafana-pv.yaml
+kubectl create secret generic alertmanager-prometheus-kps-kube-promet-alertmanager-generated -n monitoring --from-file=monitoring/prometheus/alertmanager.yaml
 helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack --namespace monitoring -f monitoring/prometheus/values.yaml
 ```
 
