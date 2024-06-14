@@ -1,0 +1,18 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elastic01
+  namespace: elastic-system
+spec:
+  version: 8.14.1
+  nodeSets:
+  - name: default
+    count: 1
+    config:
+      node.store.allow_mmap: false
+  # resources:
+  #   requests:
+  #     cpu: "200m"
+  #     memory: "2Gi"
+  #   limits:
+  #     memory: "3Gi"

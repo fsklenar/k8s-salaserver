@@ -133,7 +133,7 @@ kubectl create secret generic mysql-pass --from-literal=password=secret_db_pass 
 kubectl apply -f wordpress-dev -n wordpress-dev
 ```
 
-# 5. ElasticSearch + Fluentd + Kibana
+# 5A. ElasticSearch + Fluentd + Kibana
 ### Original documentation
 https://docs.dapr.io/operations/observability/logging/fluentd/
 
@@ -193,5 +193,35 @@ Browse to http://localhost:5601
 ```
 kubectl apply -f monitoring/kibana-es-fluentd/fluentd/fluentd-config-map.yaml
 kubectl apply -f monitoring/kibana-es-fluentd/fluentd/fluentd-with-rbac.yaml
+```
+
+# 5B. ElasticSearch + Fluentd + Kibana - ECK - Operator version
+### Original documentation
+https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-quickstart.html
+
+```
+kubectl create -f https://download.elastic.co/downloads/eck/2.13.0/crds.yaml
+kubectl apply -f https://download.elastic.co/downloads/eck/2.13.0/operator.yaml
+#create PV
+kubectl apply -f monitoring/eck/eck-pv.yaml
+#create ECK
+kubectl apply -f monitoring/eck/01-es.yaml
+#fluentd
+PASSWORD=$(kubectl get secret elastic01-es-elastic-user -n elastic-system -o go-template='{{.data.elastic | base64decode}}')
+kubectl create secret generic elasticsearch-master-credentials --from-literal="password=${PASSWORD}" -n kube-system
+```
+Patch Kibana resource - add `ExternalIPs` - change IP accordingly to your network
+```
+kubectl edit kibana -n elastic-system elastic01-kibana
+#add
+  externalIPs:
+  - 10.192.168.202
+```
+
+# 5C. ElasticSearch + Fluentd + Kibana - ECK - Helm chart version
+### Original documentation
+https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-install-helm.html
+
+```
 ```
 

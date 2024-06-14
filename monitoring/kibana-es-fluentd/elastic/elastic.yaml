@@ -2,20 +2,20 @@ replicas: 1
 
 lifecycle:
   postStart:
-  exec:
-    command:
-      - bash
-      - -c
-      - |
-        #!/bin/bash
-        # Add a template to adjust number of shards/replicas
-        TEMPLATE_NAME=my_template
-        INDEX_PATTERN="dapr-*"
-        SHARD_COUNT=8
-        REPLICA_COUNT=0
-        ES_URL=http://localhost:9200
-        while [[ "$(curl -s -o /dev/null -w '%{http_code}\n' $ES_URL)" != "200" ]]; do sleep 1; done
-        curl -XPUT "$ES_URL/_template/$TEMPLATE_NAME" -H 'Content-Type: application/json' -d'{"index_patterns":['\""$INDEX_PATTERN"\"'],"settings":{"number_of_shards":'$SHARD_COUNT',"number_of_replicas":'$REPLICA_COUNT'}}'
+    exec:
+      command:
+        - bash
+        - -c
+        - |
+          #!/bin/bash
+          # Add a template to adjust number of shards/replicas
+          TEMPLATE_NAME=dapr_template
+          INDEX_PATTERN="dapr-*"
+          SHARD_COUNT=8
+          REPLICA_COUNT=0
+          ES_URL=https://localhost:9200
+          #while [[ "$(curl -s -o /dev/null -w '%{http_code}\n' $ES_URL)" != "200" ]]; do sleep 1; done
+          #curl -XPUT "$ES_URL/_template/$TEMPLATE_NAME" -H 'Content-Type: application/json' -d'{"index_patterns":['\""$INDEX_PATTERN"\"'],"settings":{"number_of_shards":'$SHARD_COUNT',"number_of_replicas":'$REPLICA_COUNT'}}'
 
 resources:
   requests:
