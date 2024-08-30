@@ -7,4 +7,4 @@ spec:
   version: 8.14.1
   count: 1
   elasticsearchRef:
-    name: elastic01
+    name: eck01

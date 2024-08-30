@@ -14,7 +14,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   volumeMode: Filesystem
   claimRef:
-    name: elasticsearch-data-elastic01-es-default-0
+    name: elasticsearch-data-eck01-es-default-0
     namespace: elastic-system
   nodeAffinity:
     required:

@@ -207,21 +207,15 @@ kubectl apply -f monitoring/eck/eck-pv.yaml
 #create ECK
 kubectl apply -f monitoring/eck/01-es.yaml
 #fluentd
-PASSWORD=$(kubectl get secret elastic01-es-elastic-user -n elastic-system -o go-template='{{.data.elastic | base64decode}}')
+PASSWORD=$(kubectl get secret eck01-es-elastic-user -n elastic-system -o go-template='{{.data.elastic | base64decode}}')
 kubectl create secret generic elasticsearch-master-credentials --from-literal="password=${PASSWORD}" -n kube-system
 ```
 Patch Kibana resource - add `ExternalIPs` - change IP accordingly to your network
 ```
-kubectl edit kibana -n elastic-system elastic01-kibana
+kubectl edit kibana -n elastic-system eck-kibana
 #add
   externalIPs:
   - 10.192.168.202
 ```
 
-# 5C. ElasticSearch + Fluentd + Kibana - ECK - Helm chart version
-### Original documentation
-https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-install-helm.html
-
-```
-```
 
