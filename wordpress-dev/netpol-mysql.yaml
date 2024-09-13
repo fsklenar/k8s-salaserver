@@ -14,6 +14,9 @@ spec:
       - podSelector:
           matchLabels:
             tier: frontend
+      - namespaceSelector:
+          matchLabels:
+            name: wordpress-dev
       ports:
         - protocol: TCP
           port: 3306
