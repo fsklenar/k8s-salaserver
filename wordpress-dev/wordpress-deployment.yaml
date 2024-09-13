@@ -97,7 +97,7 @@ spec:
         resources:
           requests:
             memory: "32Mi"
-            cpu: "500m"
+            cpu: "200m"
           limits:
             memory: "1024Mi"
         imagePullPolicy: Always
