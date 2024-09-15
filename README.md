@@ -218,4 +218,9 @@ kubectl edit kibana -n elastic-system eck-kibana
   - 10.192.168.202
 ```
 
+# 6. Rancher - StorageClass for dynamic provisioning
+
+```
+kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.29/deploy/local-path-storage.yaml
+```
 
