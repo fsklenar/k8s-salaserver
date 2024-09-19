@@ -14,9 +14,10 @@ add ```--kubelet-insecure-tls``` into [monitoring/metrics-server.yaml](monitorin
 kubectl apply -f monitoring/metrics-server.yaml
 ```
 
-# 2. Ingress installation INGRESS-NGINX
+# 2. Ingress installation INGRESS-NGINX/ CoreDNS
 
 https://github.com/kubernetes/ingress-nginx
+
 
 ###  Static LAN IP
 By default ingress is not visible in your LAN, only internally from master/worker nodes.
@@ -39,6 +40,15 @@ For NGINX:
     helm repo update
     export INGRESS_NGINX_VER=4.10.1
     helm upgrade ingress-nginx --version ${INGRESS_NGINX_VER} -i -f ingress-nginx/values.yaml --namespace ingress-nginx --create-namespace ingress-nginx/ingress-nginx
+
+### CoreDNS
+
+```
+  wget https://github.com/coredns/deployment/blob/master/kubernetes/deploy.sh
+
+  ./deploy.sh | kubectl apply -f -
+  kubectl delete --namespace=kube-system deployment kube-dns
+```
 
 # 3. Prometheus stack - prometheus operator
 
