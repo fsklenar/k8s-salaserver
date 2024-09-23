@@ -38,7 +38,7 @@ For NGINX:
 
     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
     helm repo update
-    export INGRESS_NGINX_VER=4.10.1
+    export INGRESS_NGINX_VER=4.11.2
     helm upgrade ingress-nginx --version ${INGRESS_NGINX_VER} -i -f ingress-nginx/values.yaml --namespace ingress-nginx --create-namespace ingress-nginx/ingress-nginx
 
 ### CoreDNS
