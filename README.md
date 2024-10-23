@@ -234,3 +234,9 @@ kubectl edit kibana -n elastic-system eck-kibana
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.29/deploy/local-path-storage.yaml
 ```
 
+# 7. Kubewall - A single binary to manage your multiple kubernetes clusters.
+
+```
+helm install kubewall oci://ghcr.io/kubewall/charts/kubewall -n kubewall-system --create-namespace -f kubewall/values.yaml
+kubectl patch service kubewall -n kubewall-system -p '{"spec":{"externalIPs":["10.192.168.202"]}}'
+```

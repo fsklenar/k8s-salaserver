@@ -1,0 +1,5 @@
+pvc:
+  name: kubewall-data  # Name of the PVC
+  storage: 50Mi  # Storage size requested for the PVC
+  accessModes: ReadWriteOnce  # Access mode for the PVC
+  storageClass: "local-path"  # Storage class for the PVC (leave empty for default)
