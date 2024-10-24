@@ -23,8 +23,7 @@ spec:
       nodeSelectorTerms:
       - matchExpressions:
         - key: kubernetes.io/hostname
-          operator: In
+          operator: NotIn
           values:
-          - k8sworker01
-          - k8sworker02
+          - controlplane
 

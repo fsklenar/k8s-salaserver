@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: wordpress-dev-mysql
+  namespace: wordpress-dev
   labels:
     app: mysql-wp-dev
 spec:
@@ -16,6 +17,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-wp-dev-pv-claim
+  namespace: wordpress-dev
 spec:
   accessModes:
     - ReadWriteOnce
@@ -27,6 +29,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wordpress-dev-mysql
+  namespace: wordpress-dev
   labels:
     app: wordpress
 spec:
