@@ -124,11 +124,11 @@ metadata:
 ### - Similarly fix **Kube scheduler**, **Kube controller** and **etcd** alerts
 - SSH login into control-plane node
 ```
-cd /etc/kubernets/manifest
+cd /etc/kubernetes/manifests
 ```
 - change ``` - --bind-address=127.0.0.1``` in `kube-scheduler.yaml` file to ``` - --bind-address=0.0.0.0```
 - change ``` - --bind-address=127.0.0.1``` in `kube-controller-manager.yaml` file to ``` - --bind-address=0.0.0.0```
-- change ``` - --bind-address=127.0.0.1``` in `etcd.yaml` file to ``` - --listen-metrics-urls=http://0.0.0.0:2381```
+- change ``` - --listen-metrics-urls=http://127.0.0.1:2381``` in `etcd.yaml` file to ``` - --listen-metrics-urls=http://0.0.0.0:2381```
 
 # 4. Wordpress DEV
 Wordpress application with MySQL
