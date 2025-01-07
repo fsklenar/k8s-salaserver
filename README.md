@@ -69,6 +69,11 @@ kubectl apply --namespace monitoring -f monitoring/prometheus/pv/prom-pv.yaml
 kubectl apply --namespace monitoring -f monitoring/prometheus/pv/grafana-pv.yaml
 kubectl create secret generic alertmanager-prometheus-kps-kube-promet-alertmanager \
   -n monitoring --from-file=monitoring/prometheus/alertmanager.yaml
+
+#in case of ArgoCD:
+kubectl create secret generic alertmanager-monitoring-kube-prometheus-alertmanager \
+  -n monitoring --from-file=monitoring/prometheus/alertmanager.yaml
+
 helm upgrade -i prometheus-kps prometheus-community/kube-prometheus-stack \
   --namespace monitoring -f monitoring/prometheus/values.yaml
 ```
