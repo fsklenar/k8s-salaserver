@@ -44,7 +44,9 @@ For NGINX:
 ### CoreDNS
 
 ```
-  wget https://github.com/coredns/deployment/blob/master/kubernetes/deploy.sh
+  wget https://raw.githubusercontent.com/coredns/deployment/refs/heads/master/kubernetes/deploy.sh
+  
+  chmod u+x deploy.sh
 
   ./deploy.sh | kubectl apply -f -
   kubectl delete --namespace=kube-system deployment kube-dns
